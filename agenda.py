@@ -72,8 +72,48 @@ def edit_contact():
     print("Por favor, digite um número válido.")
 
 
+def fav_contact():
+  see_contact()
+  if not contacts:
+    print("Não há contatos na lista.")
+    return
+  try:
+    index = int(input("Selecione o contato que deseja favoritar pelo número: ")) - 1
 
+    if index < 0 or index >= len(contacts):
+      print("Número de contato inválido!")
+      return
+    
+    contact = contacts[index]
+
+    if contact.favorito:
+      verify = input("Este contato já é um favorito, deseja desfavoritar? 1-Sim 2-Não: ")
+      if verify == "1":
+        contact.favorito = False
+        print(f" Contato {contact.nome} desfavoritado com sucesso!")
+      else:
+        return
+
+    else:
+      contact.favorito = True
+      print(f"Contato {contact.nome} favoritado com sucesso!")
+
+  except ValueError:
+    print("Por favor digite um número valido.")
+
+
+def see_fav():
+  favorites = [contact for contact in contacts if contact.favorito]
+  if not favorites:
+    print("Nenhum contato favorito encontrado.")
+    return
   
+  print("\n------------Contatos Favoritos------------")
+  for i, contact in enumerate(favorites, 1):
+    print(f"{i}. {contact}")
+  print("------------------------")
+
+
 
 
 
@@ -82,7 +122,7 @@ print("Olá, bem vindo a sua agenda, o que deseja fazer?"
       "\n" "1 - Adicionar um contato"
       "\n" "2 - Visualizar lista de contatos"
       "\n" "3 - Editar um contato"
-      "\n" "4 - Marcar um contato como favorito"
+      "\n" "4 - Marcar/desmarcar um contato como favorito"
       "\n" "5 - Ver contatos Favoritos"
       "\n" "6 - Apagar um contato")
 
