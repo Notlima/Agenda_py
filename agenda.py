@@ -38,6 +38,42 @@ def see_contact():
     print(f"{i}.{contact}")
   print("-----------------------------")
 
+#Função para editar um contato
+def edit_contact():
+  see_contact()
+  if not contacts:
+    print("Não há contatos na lista.")
+    return
+  try:
+    index = int(input("Selecione o contato que deseja editar pelo número: ")) - 1
+
+    if index < 0 or index >= len(contacts):
+      print("Número de contato inválido!")
+      return
+    
+    contact = contacts[index]
+
+    print(f"\nEditando contato: {contact}")
+
+    new_nome = input(f"Nome ({contact.name}): ") or contact.nome
+    new_telefone = input(f"Telefone ({contact.telefone}): ") or contact.telefone
+    new_email = input(f"Email ({contact.email}): ") or contact.email
+    favorito_input = input(f"Favorito ({'Sim' if contact.favorito else 'Não'})? 1-Sim 2-Não: ")
+    new_favorito = True if favorito_input == "1" else False if favorito_input =="2" else contact.favorito
+
+    contact.nome = new_nome
+    contact.telefone = new_telefone
+    contact.email = new_email
+    contact.favorito = new_favorito
+
+    print(f"Contato {new_nome} atualizado com sucesso!")
+
+  except ValueError:
+    print("Por favor, digite um número válido.")
+
+
+
+  
 
 
 
@@ -58,3 +94,6 @@ match opcao:
 
   case "2":
     see_contact()
+
+  case "3":
+    edit_contact()
