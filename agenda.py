@@ -55,7 +55,7 @@ def edit_contact():
 
     print(f"\nEditando contato: {contact}")
 
-    new_nome = input(f"Nome ({contact.name}): ") or contact.nome
+    new_nome = input(f"Nome ({contact.nome}): ") or contact.nome
     new_telefone = input(f"Telefone ({contact.telefone}): ") or contact.telefone
     new_email = input(f"Email ({contact.email}): ") or contact.email
     favorito_input = input(f"Favorito ({'Sim' if contact.favorito else 'Não'})? 1-Sim 2-Não: ")
