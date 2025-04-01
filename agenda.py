@@ -113,27 +113,59 @@ def see_fav():
     print(f"{i}. {contact}")
   print("------------------------")
 
+def del_contact():
+  see_contact()
+  if not contacts:
+    print("Não há contatos na lista.")
+    return
+  try:
+    index = int(input("Selecione o contato que deseja deletar pelo número: ")) - 1
 
+    if index < 0 or index >= len(contacts):
+      print("Número de contato inválido!")
+      return
 
+    contact = contacts.pop(index)
+    print(f"Contato {contact.nome} removido com sucesso!")
+  
+  except ValueError:
+    print("Por favor, digite um número válido")
+    
 
+while True:
+  print("Olá, bem vindo a sua agenda, o que deseja fazer?" 
+        "\n" "1 - Adicionar um contato"
+        "\n" "2 - Visualizar lista de contatos"
+        "\n" "3 - Editar um contato"
+        "\n" "4 - Marcar/desmarcar um contato como favorito"
+        "\n" "5 - Ver contatos Favoritos"
+        "\n" "6 - Apagar um contato"
+        "\n" "0 - Sair da agenda")
 
+  opcao = input("Digite sua opção:")
 
-print("Olá, bem vindo a sua agenda, o que deseja fazer?" 
-      "\n" "1 - Adicionar um contato"
-      "\n" "2 - Visualizar lista de contatos"
-      "\n" "3 - Editar um contato"
-      "\n" "4 - Marcar/desmarcar um contato como favorito"
-      "\n" "5 - Ver contatos Favoritos"
-      "\n" "6 - Apagar um contato")
+  match opcao:
+    case "1":
+      add_contact()
 
-opcao = input("Digite sua opção:")
+    case "2":
+      see_contact()
 
-match opcao:
-  case "1":
-    add_contact()
+    case "3":
+      edit_contact()
 
-  case "2":
-    see_contact()
+    case "4":
+      fav_contact()
 
-  case "3":
-    edit_contact()
+    case "5":
+      see_fav()
+
+    case "6":
+      del_contact()
+
+    case "0":
+      print("Saindo da agenda...")
+      break
+
+    case _:
+      print("Opção inválida!")
