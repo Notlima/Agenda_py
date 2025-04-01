@@ -1,5 +1,5 @@
 #Definição de classe e lista
-class Contato:
+class Contact:
   def __init__(self, nome, telefone, email="", favorito=False):
     self.nome = nome
     self.telefone = telefone
@@ -10,10 +10,10 @@ class Contato:
     return f"Nome: {self.nome}, Telefone: {self.telefone}, Email: {self.email}, Favorito: {'Sim' if self.favorito else 'Não'}"
 
 #Lista para armazenar
-contatos = []
+contacts = []
 
 #função para add contatos
-def add_contato():
+def add_contact():
   nome = input("Insira o nome do contato: ")
   telefone = input("Insira o telefone: ")
   email = input("Insira o email: ")
@@ -21,11 +21,25 @@ def add_contato():
 
   favorito = True if favorito_input == "1" else False
 
-  novo_contato = Contato(nome, telefone, email, favorito)
+  new_contact = Contact(nome, telefone, email, favorito)
 
-  contatos.append(novo_contato)
+  contacts.append(new_contact)
 
   print(f"Contato {nome} adicionado com sucesso!")
+
+#Função para mostrar lista de contatos
+def see_contact():
+  if not contacts:
+    print("Nenhum contato cadastrado.")
+    return
+  
+  print("\n---------- Lista de contatos----------")
+  for i, contact in enumerate(contacts, 1):
+    print(f"{i}.{contact}")
+  print("-----------------------------")
+
+
+
 
 
 print("Olá, bem vindo a sua agenda, o que deseja fazer?" 
@@ -40,4 +54,7 @@ opcao = input("Digite sua opção:")
 
 match opcao:
   case "1":
-    add_contato()
+    add_contact()
+
+  case "2":
+    see_contact()
